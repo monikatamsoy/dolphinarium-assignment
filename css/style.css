@@ -1,0 +1,139 @@
+/* floating box style */
+.floating-form {
+	position:absolute;
+	z-index:-9;
+    max-width: 300px;
+    padding: 10px 10px 0px 10px;
+    font: 10px Arial, Helvetica, sans-serif;
+    background: #ffc952;
+    border: 1px solid #ffc952;
+    right: 10px;
+    position: fixed;
+    box-shadow: -2px -0px 8px rgba(43, 33, 33, 0.06);
+    -moz-box-shadow: -2px -0px 8px rgba(43, 33, 33, 0.06);
+    -webkit-box-shadow:  -2px -0px 8px rgba(43, 33, 33, 0.06);
+	}
+.contact-opener {
+   
+    left: -110px;
+	height:50px;
+    transform: rotate(-90deg);
+    top: 11.6%;
+    background-color: #216288;
+    padding: 20px;
+    cursor: pointer;
+    border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    box-shadow: -2px -0px 8px rgba(43, 33, 33, 0.06);
+    -moz-box-shadow: -2px -0px 8px rgba(43, 33, 33, 0.06);
+    -webkit-box-shadow:  -2px -0px 8px rgba(43, 33, 33, 0.06);
+
+}
+.floating-form-heading{
+    font-weight: bold;
+    font-style: italic;    
+	font-size: 18px;
+    padding-bottom: 3px;
+}
+.floating-form label{
+    display: block;
+    margin: 0px 0px 15px 0px;
+}
+.floating-form label > span{
+    width: 70px;
+    font-weight: bold;
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+.floating-form span.required{
+    color:red;
+}
+.floating-form .tel-number-field{
+    width: 40px;
+    text-align: center;
+}
+.floating-form  .long{
+    width: 120px;
+}
+.floating-form input.input-field{
+    width: 100%;
+   
+}
+
+.floating-form input.input-field,
+.floating-form .tel-number-field,
+.floating-form .textarea-field,
+ .floating-form .select-field{
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out; 
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+	height:30px;
+}
+.floating-form .input-field:focus,
+.floating-form .tel-number-field:focus,
+.floating-form .textarea-field:focus,  
+.floating-form .select-field:focus{
+    border: 1px solid #283b7a;
+	height:30px;
+}
+.floating-form .textarea-field:focus{
+    border: 1px solid #283b7a;
+	height:50px;
+	
+}
+.floating-form .textarea-field{
+    height:50px;
+    width: 100%;
+}
+.floating-form input[type="button"],
+.floating-form input[type="submit"], .contact-opener {
+    -moz-box-shadow: inset 0px 1px 0px 0px #283b7a;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #283b7a;
+    box-shadow: inset 0px 1px 0px 0px #283b7a;
+    background-color: #283b7a;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+}
+.floating-form input[type="button"]:hover,
+.floating-form input[type="submit"]:hover, .contact-opener {
+    background: linear-gradient(to bottom, #283b7a 5%, #283b7a 100%);
+    background-color: #283b7a;
+}
+.floating-form .success{
+	background: #D8FFC0;
+	padding: 5px 10px 5px 10px;
+	margin: 0px 0px 5px 0px;
+	border: none;
+	font-weight: bold;
+	color: #2E6800;
+	border-left: 3px solid #2E6800;
+}
+.floating-form .error {
+	background: #FFE8E8;
+	padding: 5px 10px 5px 10px;
+	margin: 0px 0px 5px 0px;
+	border: none;
+	font-weight: bold;
+	color: #FF0000;
+	border-left: 3px solid #FF0000;
+}

@@ -1,0 +1,129 @@
+<!-- contact form start -->
+	<a class="switcher-container">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+
+	var _scroll = true, _timer = false, _floatbox = $("#contact_form"), _floatbox_opener = $(".contact-opener") ;
+	_floatbox.css("right", "-322px");
+	_floatbox.css("bottom", "0px"); //initial contact form position
+	
+	
+	
+	
+	//Contact form Opener button
+	_floatbox_opener.click(function(){
+		if (_floatbox.hasClass('visiable')){
+            _floatbox.animate({"right":"-322px"},  {duration: 300}).removeClass('visiable');
+        }else{
+           _floatbox.animate({"right":"0px"},  {duration: 300}).addClass('visiable');
+        }
+	});
+	
+	
+	
+	//Ajax form submit
+    $("#submit_btn").click(function() { 
+        var proceed = true;
+        //simple validation at client's end
+        //loop through each field and we simply change border color to red for invalid fields       
+        $("#contact_form input[required=true], #contact_form textarea[required=true]").each(function(){
+            $(this).css('border-color',''); 
+            if(!$.trim($(this).val())){ //if this field is empty 
+                $(this).css('border-color','red'); //change border color to red   
+                proceed = false; //set do not proceed flag
+            }
+            //check invalid email
+            var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/; 
+            if($(this).attr("type")=="email" && !email_reg.test($.trim($(this).val()))){
+                $(this).css('border-color','red'); //change border color to red   
+                proceed = false; //set do not proceed flag              
+            }   
+        });
+       
+        if(proceed) //everything looks good! proceed...
+        {
+            //get input field values data to be sent to server
+            post_data = {
+                'user_name'     : $('input[name=name12]').val(), 
+                'user_email'    : $('input[name=email12]').val(), 
+                'country_code'  : $('input[name=phone1]').val(), 
+                'phone_number'  : $('input[name=phone2]').val(), 
+				'dob_date'      : $('input[name=date12]').val(),
+				'original_city' : $('input[name=ocity12]').val(),
+				'destin_city'   : $('input[name=dcity12]').val(),
+				'vehicl_dee'    : $('input[name=vehicle12]').val(),
+                'subject'       : $('select[name=subject]').val(), 
+                'msg'           : $('textarea[name=message12]').val()
+            };
+            
+            //Ajax post data to server
+            $.post('contact_me.php', post_data, function(response){  
+                if(response.type == 'error'){ //load json data from server and output message     
+                    output = '<div class="error">'+response.text+'</div>';
+                }else{
+                    output = '<div class="success">'+response.text+'</div>';
+                    //reset values in all input fields
+                    $("#contact_form  input[required=true], #contact_form textarea[required=true]").val(''); 
+                }
+                $("#contact_form #contact_results").hide().html(output).slideDown();
+            }, 'json');
+        }
+    });
+    
+    //reset previously set border colors and hide all message on .keyup()
+    $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() { 
+        $(this).css('border-color',''); 
+        $("#result").slideUp();
+    });
+	
+});
+</script>
+            
+
+<div class="floating-form" id="contact_form">
+<div class="contact-opener" style="font-size:18px;">ENQUIRY NOW</div>
+    <div id="contact_results"></div>
+    <div id="contact_body">
+        
+    	<input type="text" name="name12" id="name" placeholder="Name" required class="input-field" style="background-color:#FFF;"><br><br>
+    	<input type="email" name="email12" placeholder="Email" required class="input-field" style="background-color:#FFF;"><br><br>
+        <input type="text" name="phone1" placeholder="+91" required class="tel-number-field" style="width:30%; background-color:#FFF;" maxlength="3">
+        <input type="text" name="phone2" placeholder="Phone" required class="tel-number-field long" style="width:68%; background-color:#FFF;" maxlength="10"><br><br>
+        <input type="date" name="date12" placeholder="dd/mm/yyyy" class="input-field" id="date1" style="background-color:#FFF;"  required /><br><br>
+        <input type="text" name="ocity12" placeholder="Origin City" class="input-field" style="background-color:#FFF;" required><br><br>       
+        <input type="text" name="dcity12" placeholder="Destination City" class="input-field" style="background-color:#FFF;" required /><br><br>            
+        <input type="text" name="vehicle12" placeholder="Vehicle Name" class="input-field" style="background-color:#FFF;" required /><br><br>
+        
+			<select name="subject" style="background-color:#FFF;" class="select-field">
+			<option value="Car transportation">Car Transportation</option>
+			<option value="Bike Transportation">Bike Transportation</option>
+			<option value="Single Car Carrier">Single Car Carrier</option>
+			<option value="Car Carriers Services">Car Carriers Services</option>
+			<option value="Office Relocation">Office Relocation</option>
+			<option value="Pet Relocation">Pet Relocation</option>
+			<option value="House Relocation">House Relocation</option>
+			<option value="Export & Import">Export & Import</option>
+			<option value="Storage">Storage</option>
+			<option value="Warehousing Services">Warehousing Services</option>
+			<option value="Insurance">Insurance</option>
+			<option value="Logistics">Logistics</option>
+			<option value="FTL Transportation">FTL Transportation</option>
+			<option value="Custom Clearance">Custom Clearance</option>
+			<option value="Air Cargo Services">Air Cargo Services</option>
+            </select>
+       <br><br>
+        	 <span class="required"></span>
+        	<textarea name="message12" id="message" class="textarea-field" placeholder="Write Your Requirement" style="background-color:#FFF;" required></textarea><br><br>
+        
+        
+        	<input type="submit" id="submit_btn" value="Submit" style="height:30px;"><br>
+            <hr style="background-color: #ffc952; border-top: 2px dotted #283b7a">
+            <div class="floating-form-heading">Or Call On: +91 9953319116</div><br>
+        
+    </div>
+</div>
+<!-- contact form end -->
